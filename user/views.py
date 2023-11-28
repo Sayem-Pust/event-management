@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .serializers import RegistrationSerializer
+from .serializers import RegistrationSerializer, UserEventSerializer
 from rest_framework import generics, permissions, views
 from django.db.models import Q
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -63,7 +63,7 @@ class EventRegistrationAPIView(views.APIView):
         event_data = request.data.get('event')
         qs_ex = UserEvent.objects.filter(user=request.user, event=event_data)
         if qs_ex.exists():
-            return response.Response({'error': 'User already register for this event'}
+            return response.Response({'message': 'User already register for this event'}
                                      , status=status.HTTP_400_BAD_REQUEST)
         else:
             qs = UserEvent.objects.get(user=request.user)
@@ -71,11 +71,11 @@ class EventRegistrationAPIView(views.APIView):
             if event.exists():
                 event = event.first()
                 if event.available_slot == 0:
-                    return response.Response({'error': 'Sorry, There is no available slot for you'}
+                    return response.Response({'message': 'Sorry, There is no available slot for you'}
                                              , status=status.HTTP_400_BAD_REQUEST)
                 event_datetime = datetime.combine(event.date, event.time)
                 if event_datetime < datetime.now():
-                    return response.Response({'error': 'Event has already passed'}, status=status.HTTP_400_BAD_REQUEST)
+                    return response.Response({'message': 'Event has already passed'}, status=status.HTTP_400_BAD_REQUEST)
 
                 qs.event.add(event_data)
                 qs.save()
@@ -100,7 +100,7 @@ class EventUnRegistrationAPIView(views.APIView):
             event = Event.objects.get(id=event_data, status=True)
             event_datetime = datetime.combine(event.date, event.time)
             if event_datetime < datetime.now():
-                return response.Response({'error': 'Event has already passed'}, status=status.HTTP_400_BAD_REQUEST)
+                return response.Response({'message': 'Event has already passed'}, status=status.HTTP_400_BAD_REQUEST)
             event.available_slot += 1
             qs_ex.event.remove(event_data)
             qs_ex.save()
@@ -111,3 +111,15 @@ class EventUnRegistrationAPIView(views.APIView):
         return response.Response({
             "message": "User not registered for this event"
         })
+
+
+class UserRegisteredEventApiView(views.APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        qs = UserEvent.objects.get(user=request.user)
+        serializer = UserEventSerializer(qs, many=False)
+        return response.Response({
+            "data": serializer.data,
+            "message": "Data get successfully"
+        }, status=status.HTTP_200_OK)

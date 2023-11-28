@@ -2,6 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
+from .models import UserEvent
+from event.serializers import EventSerializer
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -15,7 +17,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'confirm_password', 'email', 'first_name', 'last_name')
+        fields = ['username', 'password', 'confirm_password', 'email', 'first_name', 'last_name']
         extra_kwargs = {
             'first_name': {'required': True},
             'last_name': {'required': True}
@@ -39,3 +41,18 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
+
+class UserEventSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    event = EventSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = UserEvent
+        fields = ['id', 'user', 'event']
