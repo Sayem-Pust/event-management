@@ -8,7 +8,6 @@ class Event(models.Model):
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
 
-    total_slot = models.IntegerField(default=0)
     available_slot = models.IntegerField(default=0)
 
     status = models.BooleanField(default=True)
