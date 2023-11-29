@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "1547165e-e0d3-4322-84de-00e021115dee",
+		"name": "event management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10702064"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "sayem",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "sayem@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "md",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "sayem",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Ss@12345",
+							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "Ss@12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/registration/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"registration",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "identifier",
+							"value": "sayem",
+							"description": "username or email",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Ss@12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"login",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User register event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxMTkyMjM0LCJpYXQiOjE3MDExOTE5MzQsImp0aSI6IjdkYjJjN2EwNGIzYzRkODZiODUyYzk1Zjc5MjZiMzMyIiwidXNlcl9pZCI6Nn0.3t7THzWjtPbpaXJgYNDfUrZOfQ2027t3DWdaEFUQIiM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "event",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/event-register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"event-register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User unregister event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxMTkwNzM2LCJpYXQiOjE3MDExOTA0MzYsImp0aSI6IjE5ZDQ5ZjZkYWFjMTQyYzM4MDA3YjJhYTRlYmE5YTliIiwidXNlcl9pZCI6Nn0.dn9cXbZtuHL1IU1hlKpOavVp5WYVhELu7zI-PxdcRXM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "event",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/event-unregister/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"event-unregister",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user registered events",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxMTkyMjM0LCJpYXQiOjE3MDExOTE5MzQsImp0aSI6IjdkYjJjN2EwNGIzYzRkODZiODUyYzk1Zjc5MjZiMzMyIiwidXNlcl9pZCI6Nn0.3t7THzWjtPbpaXJgYNDfUrZOfQ2027t3DWdaEFUQIiM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/event",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/search/event?search_params=%23event1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"search",
+						"event"
+					],
+					"query": [
+						{
+							"key": "search_params",
+							"value": "%23event1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxMjc0NDI3LCJpYXQiOjE3MDEyNzQxMjcsImp0aSI6IjVhNzQ3MGViNmE2NzQzN2M5NzdlZThmNmRmOTFlYzYyIiwidXNlcl9pZCI6Nn0.uVR4TjQhPluC0NxILCBe4espTroAMz62w1POZPE9PrI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "event 3",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "this is event 3",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "2023-11-30",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "01:08:51",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "dhaka",
+							"type": "text"
+						},
+						{
+							"key": "keywords",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "keywords",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/event/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"event",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update event",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "event 3 updated",
+							"type": "text"
+						},
+						{
+							"key": "keywords",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/event/8/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"event",
+						"8",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get event details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/event/8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"event",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete event",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/event/8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"event",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

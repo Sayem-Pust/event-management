@@ -18,3 +18,6 @@
     - pip install -r requirements.txt
 6. Finally run project 
     - python manage.py runserver
+
+### Handle all error and include message for better user experience  
+### Include Postman collection
